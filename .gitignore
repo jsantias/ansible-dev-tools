@@ -3,3 +3,4 @@ docs/site
 id_rsa
 .vagrant
 *.pyc
+*.sh

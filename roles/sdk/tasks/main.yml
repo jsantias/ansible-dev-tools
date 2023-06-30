@@ -1,0 +1,11 @@
+---
+# Install various development tools
+
+# - include: dotnet.yml
+#   when: install_dotnet
+
+# - include: python.yml
+#   when: install_python
+
+- include: node
+  when: install_node

@@ -1,10 +1,10 @@
----
 # ansible-playbook -i localhost, playbook.yml
 
 ---
-- hosts: all
+- hosts: localhost
+  connection: localhost
   vars:
     is_container: false
 
   roles:
-  - role: "{{ playbook_dir }}"
+  - role: sdk

@@ -1,0 +1,25 @@
+---
+
+- name: Install pyenv
+  get_url:
+    url: https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer
+    dest: /tmp/pyenv-installer.sh
+    mode: "0755"
+
+- name: Execute pyenv script
+  shell: /tmp/pyenv-installer.sh
+  # ignore_errors: true
+
+- name: Get latest version of python
+  shell: pyenv latest -k 3
+  register: latest_version
+
+- name: Install latest version of python
+  shell: |
+    pyenv install {{ latest_version.stdout }}
+    pyenv global {{ latest_version.stdout }}
+  when: py_version is undefined
+
+- name: Install specified python version
+  shell: pyenv install {{ pyversion }}
+  when: py_version is defined
